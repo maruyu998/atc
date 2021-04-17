@@ -31,6 +31,19 @@ optional arguments:
 > atc start
 ```
 
+### adaptation
+```
+> atc where base
+/home/yukimaru/.pyenv/versions/3.9.4/lib/python3.9/site-packages/atc/_base.py
+> vim /home/yukimaru/.pyenv/versions/3.9.4/lib/python3.9/site-packages/atc/_base.py
+# and then you can modify basefile that will be copied to your contest directory as {A,B,C,...}.py.
+
+> atc where utils
+/home/yukimaru/.pyenv/versions/3.9.4/lib/python3.9/site-packages/atc/utils
+> vim /home/yukimaru/.pyenv/versions/3.9.4/lib/python3.9/site-packages/atc/utils/useful_functions.py
+# and then you can add any files that will be copied to your contest directory.
+```
+
 ### evaluation
 ```
 # when you want check problem B for all sample cases
