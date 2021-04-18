@@ -31,10 +31,24 @@ def get_contest_name(contest_name:str=None):
         _save_contest_name(contest_name)
     return contest_name
 
-def fetch_html(url:str):
-    import requests
+import requests, getpass
+def get_session()->requests.Session:
+    url = 'https://atcoder.jp/login'
+    session = requests.Session()
+    response = session.get(url)
+    response.raise_for_status()
+    import re
+    m = re.findall(r'<input type="hidden" name="csrf_token" value="(.*?)" />', response.content.decode('utf-8'))
+    if len(m)==0: raise Exception('could not find csrf_token')
+    csrf_token = m[0]
+    username = input('input your username > ')
+    password = getpass.getpass(f'input password for {username} > ')
+    session.post(url, data={'csrf_token':csrf_token, 'username': username, 'password': password}).raise_for_status()
+    return session
+
+def fetch_html(url:str, session:requests.Session=None):
     print(f'fetching from {url}')
-    page = requests.get(url)
+    page = session.get(url) if session else requests.get(url)
     if page.status_code != 200:
         print(f'failed to get {url}, status {page.status_code}')
         post = url.replace('https://atcoder.jp/contests/','')

@@ -1,8 +1,8 @@
-from .contest import get_contest_name, fetch_html, get_levels
+from .contest import get_contest_name, fetch_html, get_levels, get_session
 
-def fetch_case(contest_name:str, level:str):
+def fetch_case(contest_name:str, level:str, session=None):
     url = f'https://atcoder.jp/contests/{contest_name}/tasks/{contest_name}_{level}'
-    html = fetch_html(url)
+    html = fetch_html(url, session)
     import re
     inputs = re.findall(r'<h3>入力例 ([0-9])</h3><pre>(.*?)</pre>', html, flags=re.DOTALL)
     outputs = re.findall(r'<h3>出力例 ([0-9])</h3><pre>(.*?)</pre>', html, flags=re.DOTALL)
@@ -25,7 +25,8 @@ def make_case_file(level:str, inputs:dict, outputs:dict):
 def fetch(contest_name:str=None):
     import time
     contest_name = get_contest_name(contest_name)
+    session = get_session()
     for level in get_levels():
-        input_dic, output_dic = fetch_case(contest_name, level)
+        input_dic, output_dic = fetch_case(contest_name, level, session)
         make_case_file(level, input_dic, output_dic)
         time.sleep(1)
