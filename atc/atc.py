@@ -49,9 +49,9 @@ def main():
         from .create import create
         create(args.contest_name)
         from .wait import wait
-        wait(args.contest_name)
+        session = wait(args.contest_name, require_session=True)
         from .fetch import fetch
-        fetch(args.contest_name)
+        fetch(args.contest_name, session)
     
     elif args.action == 'create':
         from .create import create

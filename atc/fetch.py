@@ -22,10 +22,11 @@ def make_case_file(level:str, inputs:dict, outputs:dict):
         with open(f'{directory}/out{i}.txt','w') as f: f.write(outputs[i])
         print(f"[\033[92msample {i}\033[0m]",inputs[i],f'[output {i}]',outputs[i], sep='\n')
 
-def fetch(contest_name:str=None):
+def fetch(contest_name:str=None, session=None):
     import time
     contest_name = get_contest_name(contest_name)
-    session = get_session()
+    if session==None:
+        session = get_session()
     for level in get_levels():
         input_dic, output_dic = fetch_case(contest_name, level, session)
         make_case_file(level, input_dic, output_dic)

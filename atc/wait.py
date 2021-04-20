@@ -1,5 +1,6 @@
-from .contest import get_contest_name, fetch_html
+from .contest import get_contest_name, fetch_html, get_session
 from .contest import _parse_levels, _save_levels, _read_levels
+from datetime import timedelta
 
 def parse_start_time(html):    
     import re
@@ -12,7 +13,7 @@ def parse_start_time(html):
         start_time = parse(start_time[0])
     return start_time
 
-def wait(contest_name:str=None):
+def wait(contest_name:str=None, require_session:bool=False):
     contest_name = get_contest_name(contest_name)
     url = f'https://atcoder.jp/contests/{contest_name}'
     html = fetch_html(url)
@@ -22,7 +23,11 @@ def wait(contest_name:str=None):
     from datetime import datetime, timezone, timedelta
     now = datetime.now(timezone(timedelta(hours=+9), 'JST'))
     import time
+    session = None
     while now < start_time:
         now = datetime.now(timezone(timedelta(hours=+9), 'JST'))
         print(f"{int((start_time - now).total_seconds())} seconds left", end="\r")
+        if session == None and now < start_time - timedelta(minutes=3):
+            session = get_session()
         time.sleep(1)
+    return session
