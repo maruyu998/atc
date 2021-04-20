@@ -13,5 +13,6 @@ setup(
 			"atc = atc.atc:main"
 		]
 	},
+	include_package_data=True,
 	python_required=">3.8",
 )
