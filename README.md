@@ -4,6 +4,11 @@ atcoder auto example fetching and code evaluation
 ## install
 `pip install -U git+https://github.com/maruyu998/atc`
 
+or 
+
+`git clone https://github.com/maruyu998/atc`
+`pip install -e .`
+
 ## usage
 ```
 > atc
