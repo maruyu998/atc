@@ -87,7 +87,7 @@ case's answer    >> Yes
 ### run
 `atc eval` command waits for whole execution, so if there is infinite loop, `atc eval` command doesn't end and output nothing.
 
-`atc run` command is just run the command and output result into stdout directory.
+`atc run` command is just run the command and output result into stdout directly.
 
 ```
 > atc run B
