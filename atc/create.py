@@ -7,7 +7,7 @@ UTILSPATH = f'{os.path.dirname(__file__)}/utils'
 def _create_file(level):
     filename = f"{os.getcwd()}/{level}.py"
     if os.path.exists(filename):
-        inp = input(f"{filename} is already exist. Override? [y/N] ")
+        inp = input(f"{filename} already exists. Override? [y/N] ")
         if inp != "y": print('keep the file:', filename); return
 
     with open(BASEPATH) as fr, open(filename, 'w') as fw:

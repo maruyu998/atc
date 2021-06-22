@@ -26,8 +26,8 @@ def wait(contest_name:str=None, require_session:bool=False):
     session = None
     while now < start_time:
         now = datetime.now(timezone(timedelta(hours=+9), 'JST'))
-        print(f"{int((start_time - now).total_seconds())} seconds left", end="\r")
-        if session == None and now < start_time - timedelta(minutes=3):
+        print(f"{int((start_time - now).total_seconds())} seconds left        ", end="\r")
+        if session == None and now > start_time - timedelta(minutes=3):
             session = get_session()
         time.sleep(1)
     return session

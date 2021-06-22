@@ -7,9 +7,8 @@ atcoder auto example fetching and code evaluation
 or 
 
 ```
-git clone https://github.com/maruyu998/atc
-cd atc
-pip install -e .
+git clone https://github.com/maruyu998/atc ~/.atc
+pip install -e ~/.atc
 ```
 
 ## usage
